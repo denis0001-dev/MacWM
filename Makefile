@@ -1,24 +1,33 @@
-CXXFLAGS ?= -Wall -g
-CXXFLAGS += -std=c++1y
-CXXFLAGS += -DGLOG_USE_GLOG_EXPORT
-CXXFLAGS += `pkg-config --cflags x11 libglog`
-LDFLAGS += `pkg-config --libs x11 libglog`
+PROJECTDIR = $(shell realpath .)
+INDIR = $(PROJECTDIR)/src
+OUTDIR = $(PROJECTDIR)/build
 
-all: basic_wm
+XEPHYR = $(shell whereis -b Xephyr | sed -E 's/^.*: ?//')
 
-HEADERS = \
-    util.hpp \
-    window_manager.hpp
-SOURCES = \
-    util.cpp \
-    window_manager.cpp \
-    main.cpp
-OBJECTS = $(SOURCES:.cpp=.o)
+ifndef XEPHYR
+	$(error "Xephyr not found!")
+endif
 
-basic_wm: $(HEADERS) $(OBJECTS)
-	$(CXX) -o $@ $(OBJECTS) $(LDFLAGS)
+all: cmake compile run
 
-.PHONY: clean
-clean:
-	rm -f basic_wm $(OBJECTS)
+cmake:
+	cmake -S $(PROJECTDIR)/ -B $(OUTDIR)/
 
+compile:
+	cd $(OUTDIR); \
+	make; \
+	cd $(PROJECTDIR)
+
+run:
+	# Check that Xephyr exists
+	if [ -z "$(XEPHYR)" ]; then \
+		echo "Xephyr not found!"; \
+		exit 0; \
+  	fi; \
+  	export DEBUGGING=${DEBUG}; \
+  	xinit $(PROJECTDIR)/xinitrc -- \
+        "$(XEPHYR)" \
+            :100 \
+            -ac \
+            -screen 1280x800 \
+            -host-cursor
