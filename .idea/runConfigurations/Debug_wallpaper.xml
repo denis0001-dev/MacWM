@@ -1,0 +1,6 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Debug wallpaper" type="CLion_Remote" version="1" remoteCommand="localhost:1235" symbolFile="$PROJECT_DIR$/build/wallpaper" sysroot="">
+    <debugger kind="GDB" isBundled="true" />
+    <method v="2" />
+  </configuration>
+</component>

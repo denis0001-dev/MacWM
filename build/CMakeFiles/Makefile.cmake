@@ -14,6 +14,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/snap/cmake/1415/share/cmake-3.30/Modules/CMakeCInformation.cmake"
   "/snap/cmake/1415/share/cmake-3.30/Modules/CMakeCXXInformation.cmake"
   "/snap/cmake/1415/share/cmake-3.30/Modules/CMakeCommonLanguageInclude.cmake"
+  "/snap/cmake/1415/share/cmake-3.30/Modules/CMakeFindDependencyMacro.cmake"
   "/snap/cmake/1415/share/cmake-3.30/Modules/CMakeGenericSystem.cmake"
   "/snap/cmake/1415/share/cmake-3.30/Modules/CMakeInitializeConfigs.cmake"
   "/snap/cmake/1415/share/cmake-3.30/Modules/CMakeLanguageInformation.cmake"
@@ -23,6 +24,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/snap/cmake/1415/share/cmake-3.30/Modules/Compiler/GNU-C.cmake"
   "/snap/cmake/1415/share/cmake-3.30/Modules/Compiler/GNU-CXX.cmake"
   "/snap/cmake/1415/share/cmake-3.30/Modules/Compiler/GNU.cmake"
+  "/snap/cmake/1415/share/cmake-3.30/Modules/FeatureSummary.cmake"
   "/snap/cmake/1415/share/cmake-3.30/Modules/FindPNG.cmake"
   "/snap/cmake/1415/share/cmake-3.30/Modules/FindPackageHandleStandardArgs.cmake"
   "/snap/cmake/1415/share/cmake-3.30/Modules/FindPackageMessage.cmake"
@@ -35,6 +37,10 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/snap/cmake/1415/share/cmake-3.30/Modules/Platform/Linux.cmake"
   "/snap/cmake/1415/share/cmake-3.30/Modules/Platform/UnixPaths.cmake"
   "/snap/cmake/1415/share/cmake-3.30/Modules/SelectLibraryConfigurations.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/SDL2/sdl2-config-version.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/SDL2/sdl2-config.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/SDL2_image/sdl2_image-config-version.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/SDL2_image/sdl2_image-config.cmake"
   )
 
 # The corresponding makefile is:
@@ -51,4 +57,5 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/macwm.dir/DependInfo.cmake"
+  "CMakeFiles/wallpaper.dir/DependInfo.cmake"
   )

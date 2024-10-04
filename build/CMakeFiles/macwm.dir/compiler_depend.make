@@ -546,6 +546,7 @@ CMakeFiles/macwm.dir/src/window_manager.cpp.o: /home/denis0001-dev/CLionProjects
   /usr/include/c++/13/bits/stl_tempbuf.h \
   /usr/include/c++/13/bits/stl_uninitialized.h \
   /usr/include/c++/13/bits/stl_vector.h \
+  /usr/include/c++/13/bits/stream_iterator.h \
   /usr/include/c++/13/bits/streambuf.tcc \
   /usr/include/c++/13/bits/streambuf_iterator.h \
   /usr/include/c++/13/bits/stringfwd.h \
@@ -584,6 +585,7 @@ CMakeFiles/macwm.dir/src/window_manager.cpp.o: /home/denis0001-dev/CLionProjects
   /usr/include/c++/13/iosfwd \
   /usr/include/c++/13/iostream \
   /usr/include/c++/13/istream \
+  /usr/include/c++/13/iterator \
   /usr/include/c++/13/limits \
   /usr/include/c++/13/memory \
   /usr/include/c++/13/mutex \
@@ -1104,6 +1106,8 @@ CMakeFiles/macwm.dir/src/window_manager.cpp.o: /home/denis0001-dev/CLionProjects
 
 /usr/include/c++/13/cctype:
 
+/usr/include/c++/13/bits/stream_iterator.h:
+
 /usr/include/c++/13/bits/fstream.tcc:
 
 /usr/include/c++/13/vector:
@@ -1187,6 +1191,8 @@ CMakeFiles/macwm.dir/src/window_manager.cpp.o: /home/denis0001-dev/CLionProjects
 /usr/include/c++/13/chrono:
 
 /usr/include/c++/13/bits/vector.tcc:
+
+/usr/include/c++/13/iterator:
 
 /usr/include/c++/13/bits/locale_classes.tcc:
 

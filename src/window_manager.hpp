@@ -29,7 +29,7 @@ class WindowManager {
   // Invoked internally by Create().
   explicit WindowManager(Display* display);
   // Frames a top-level window.
-  void frame(Window w, bool beforeWindowManager);
+  void frame(Window w, bool beforeWindowManager, bool wallpaper);
   // Unframes a client window.
   void unframe(Window w);
 
@@ -72,6 +72,7 @@ class WindowManager {
   const Window root_;
   // Maps top-level windows to their frame windows.
   std::unordered_map<Window, Window> clients_;
+  Window wallpaper;
 
   // The cursor position at the start of a window move/resize.
   Position<int> drag_start_pos_ = Position<int>(-1, -1);

@@ -1,6 +1,8 @@
 // ReSharper disable CppMemberFunctionMayBeStatic
 #include "window_manager.hpp"
 
+#include <iterator>
+
 extern "C" {
 #include <X11/Xutil.h>
 }
@@ -46,6 +48,7 @@ unique_ptr<WindowManager> WindowManager::create(const string &display_str) {
 WindowManager::WindowManager(Display *display) // NOLINT(*-pro-type-member-init)
     : display_(CHECK_NOTNULL(display)),
       root_(DefaultRootWindow(display_)),
+      wallpaper(),
       // wallpaper_image_(nullptr),
       WM_PROTOCOLS(XInternAtom(display_, "WM_PROTOCOLS", false)),
       WM_DELETE_WINDOW(XInternAtom(display_, "WM_DELETE_WINDOW", false)) {
@@ -94,9 +97,14 @@ void WindowManager::run() {
         &top_level_windows,
         &num_top_level_windows));
     CHECK_EQ(returned_root, root_);
+
     //     ii. Frame each top-level window.
     for (unsigned int i = 0; i < num_top_level_windows; ++i) {
-        frame(top_level_windows[i], true);
+        println("[" << i << "] window " << top_level_windows[i]);
+        frame(top_level_windows[i], true, i == 0);
+    }
+    if (num_top_level_windows == 0) {
+        println("No top-level windows found.");
     }
     //     iii. Free top-level window array.
     XFree(top_level_windows);
@@ -119,10 +127,10 @@ void WindowManager::run() {
                 break;
             case DestroyNotify:
                 onDestroyNotify(e.xdestroywindow);
-                if (clients_.empty()) {
+                /* if (clients_.empty()) {
                     println("Goodbye!");
                     exit(0);
-                }
+                } */
                 break;
             case ReparentNotify:
                 onReparentNotify(e.xreparent);
@@ -167,11 +175,19 @@ void WindowManager::run() {
     }
 }
 
-void WindowManager::frame(const Window w, const bool beforeWindowManager) {
+void WindowManager::frame(const Window w, const bool beforeWindowManager, bool wallpaper) {
+    if (clients_.empty()) {
+        wallpaper = true;
+    }
     // Visual properties of the frame to create.
-    constexpr unsigned int BORDER_WIDTH = 3 /* px */;
-    constexpr unsigned long BORDER_COLOR = 0xff0000; // red
-    constexpr unsigned long BG_COLOR = 0x0000ff; // black
+    const unsigned int BORDER_WIDTH = wallpaper ? 0 : 3 /* px */;
+    const unsigned long BORDER_COLOR = wallpaper ? BLACK : RED; // red
+    constexpr unsigned long BG_COLOR = BLACK; // black
+
+    if (wallpaper) {
+        this->wallpaper = w;
+        println("This window is the wallpaper");
+    }
 
     // We shouldn't be framing windows we've already framed.
     CHECK(!clients_.count(w));
@@ -219,39 +235,41 @@ void WindowManager::frame(const Window w, const bool beforeWindowManager) {
     // 8. Save frame handle.
     clients_[w] = frame;
     // 9. Grab universal window management actions on client window.
-    //   a. Move windows with alt + left button.
-    XGrabButton(
-        display_,
-        Button1,
-        Mod1Mask,
-        w,
-        false,
-        ButtonPressMask | ButtonReleaseMask | ButtonMotionMask,
-        GrabModeAsync,
-        GrabModeAsync,
-        None,
-        None);
-    //   b. Resize windows with alt + right button.
-    XGrabButton(
-        display_,
-        Button3,
-        Mod1Mask,
-        w,
-        false,
-        ButtonPressMask | ButtonReleaseMask | ButtonMotionMask,
-        GrabModeAsync,
-        GrabModeAsync,
-        None,
-        None);
-    //   c. Kill windows with alt + f4.
-    XGrabKey(
-        display_,
-        XKeysymToKeycode(display_, XK_F4),
-        Mod1Mask,
-        w,
-        false,
-        GrabModeAsync,
-        GrabModeAsync);
+    if (!wallpaper) {
+        //   a. Move windows with alt + left button.
+        XGrabButton(
+            display_,
+            Button1,
+            Mod1Mask,
+            w,
+            false,
+            ButtonPressMask | ButtonReleaseMask | ButtonMotionMask,
+            GrabModeAsync,
+            GrabModeAsync,
+            None,
+            None);
+        //   b. Resize windows with alt + right button.
+        XGrabButton(
+            display_,
+            Button3,
+            Mod1Mask,
+            w,
+            false,
+            ButtonPressMask | ButtonReleaseMask | ButtonMotionMask,
+            GrabModeAsync,
+            GrabModeAsync,
+            None,
+            None);
+        //   c. Kill windows with alt + f4.
+        XGrabKey(
+            display_,
+            XKeysymToKeycode(display_, XK_F4),
+            Mod1Mask,
+            w,
+            false,
+            GrabModeAsync,
+            GrabModeAsync);
+    }
     //   d. Switch windows with alt + tab.
     XGrabKey(
         display_,
@@ -332,7 +350,7 @@ void WindowManager::onConfigureNotify(const XConfigureEvent &e) {
 
 void WindowManager::onMapRequest(const XMapRequestEvent &e) {
     // 1. Frame or re-frame window.
-    frame(e.window, false);
+    frame(e.window, false, false);
     // 2. Actually map window.
     XMapWindow(display_, e.window);
 }

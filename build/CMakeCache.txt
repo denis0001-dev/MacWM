@@ -242,6 +242,12 @@ PNG_LIBRARY_RELEASE:FILEPATH=/usr/lib/x86_64-linux-gnu/libpng.so
 //Path to a file.
 PNG_PNG_INCLUDE_DIR:PATH=/usr/include
 
+//The directory containing a CMake configuration file for SDL2.
+SDL2_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/SDL2
+
+//The directory containing a CMake configuration file for SDL2_image.
+SDL2_image_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/SDL2_image
+
 //Path to a file.
 ZLIB_INCLUDE_DIR:PATH=/usr/include
 

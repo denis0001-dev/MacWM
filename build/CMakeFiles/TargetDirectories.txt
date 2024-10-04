@@ -1,3 +1,4 @@
 /home/denis0001-dev/CLionProjects/basic_wm/build/CMakeFiles/macwm.dir
+/home/denis0001-dev/CLionProjects/basic_wm/build/CMakeFiles/wallpaper.dir
 /home/denis0001-dev/CLionProjects/basic_wm/build/CMakeFiles/edit_cache.dir
 /home/denis0001-dev/CLionProjects/basic_wm/build/CMakeFiles/rebuild_cache.dir

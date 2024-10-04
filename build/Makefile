@@ -129,6 +129,19 @@ macwm/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/macwm.dir/build.make CMakeFiles/macwm.dir/build
 .PHONY : macwm/fast
 
+#=============================================================================
+# Target rules for targets named wallpaper
+
+# Build rule for target.
+wallpaper: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 wallpaper
+.PHONY : wallpaper
+
+# fast build rule for target.
+wallpaper/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/wallpaper.dir/build.make CMakeFiles/wallpaper.dir/build
+.PHONY : wallpaper/fast
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -209,6 +222,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... wallpaper"
 	@echo "... macwm"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
