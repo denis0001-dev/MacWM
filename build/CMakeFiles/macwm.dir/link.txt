@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/macwm.dir/src/main.cpp.o CMakeFiles/macwm.dir/src/util.cpp.o CMakeFiles/macwm.dir/src/window_manager.cpp.o -o macwm  -lX11 -lglog

@@ -360,3 +360,4 @@ bool file_ends_with_png(const std::string &file_path) {
     return file_path.size() >= extension.size() &&
            equal(file_path.rbegin(), file_path.rbegin() + extension.size(), extension.rbegin()); // NOLINT(*-narrowing-conversions)
 }
+

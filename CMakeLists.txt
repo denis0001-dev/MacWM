@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.30)
+cmake_minimum_required(VERSION 3.28)
 project(MacWM)
 
 # Compiler is g++
@@ -11,15 +11,14 @@ set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR} CACHE PATH "Build directory" FORC
 # Window manager
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(X11 REQUIRED x11)
-pkg_check_modules(GLOG REQUIRED)
-pkg_check_modules(GLOG REQUIRED libglog)
 find_package(PNG REQUIRED)
 
-add_executable(macwm src/main.cpp src/util.cpp src/window_manager.cpp)
+add_executable(macwm src/main.cpp src/util.cpp src/window_manager.cpp src/logging.cpp src/assert.cpp src/x_utils.cpp)
 target_compile_options(macwm PRIVATE -Wall -g -std=c++1y)
-target_compile_definitions(macwm PRIVATE GLOG_USE_GLOG_EXPORT)
+target_compile_definitions(macwm PRIVATE)
+target_link_options(macwm PRIVATE -Iext)
 
-target_link_libraries(macwm ${X11_LIBRARIES} ${GLOG_LIBRARIES})
+target_link_libraries(macwm ${X11_LIBRARIES} ${X11_Xext_LIB})
 
 # Wallpaper
 find_package(SDL2 REQUIRED)

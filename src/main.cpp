@@ -1,6 +1,6 @@
 #include <cstdlib>
 #include <iostream>
-#include <glog/logging.h>
+#include "logging.hpp"
 #include "window_manager.hpp"
 
 using std::unique_ptr;
@@ -18,12 +18,14 @@ using std::endl;
  *
  * @return EXIT_SUCCESS if the WindowManager is successfully created and run, otherwise, EXIT_FAILURE.
  */
-int main(int argc, char** argv) {
-  google::InitGoogleLogging(argv[0]);
-  if (const unique_ptr<WindowManager> wm = WindowManager::create()) {
-    wm->run();
-    return EXIT_SUCCESS;
-  }
-  cout << "Failed to initialize window manager." << endl;
-  return EXIT_FAILURE;
+int main(int argc, char **argv) {
+    logging::init();
+    log(logging::WARNING, "Testing logging");
+
+    if (const unique_ptr<WindowManager> wm = WindowManager::create()) {
+        wm->run();
+        return EXIT_SUCCESS;
+    }
+    cout << "Failed to initialize window manager." << endl;
+    return EXIT_FAILURE;
 }

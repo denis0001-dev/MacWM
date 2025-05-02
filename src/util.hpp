@@ -7,6 +7,14 @@ extern "C" {
 #include <ostream>
 #include <string>
 
+#define printlntostream(str, ln) str << ln << std::endl
+
+#define println(c) printlntostream(std::cout, c)
+#define errln(c) printlntostream(std::cerr, c)
+
+#define RED 0xff0000
+#define BLACK 0x0000ff
+
 // Represents a 2D size.
 template <typename T>
 struct Size {
