@@ -188,27 +188,8 @@ void WindowManager::frame(const Window w, const bool beforeWindowManager, bool w
         TITLE_BAR_HEIGHT,
         0, 0, BG_COLOR);
 
-    // Create buttons
-    /*const Window close_button = XUtils::createButton(display_, frame, 8, 4, 0xFF6961, 14);  // Light Red
-    const Window minimize_button = XUtils::createButton(display_, frame, 28, 4, 0xFFB347, 14);  // Light Orange
-    const Window maximize_button = XUtils::createButton(display_, frame, 48, 4, 0x77DD77, 14);  // Light Green*/
-
     // Map title bar and buttons
     XUtils::mapWindow(display_, title_bar);
-    /*XUtils::mapWindow(display_, close_button);
-    XUtils::mapWindow(display_, minimize_button);
-    XUtils::mapWindow(display_, maximize_button);
-
-    // Grab button events for the new buttons
-    XUtils::grabButton(display_, Button1, AnyModifier, close_button, false,
-                      ButtonPressMask | ButtonReleaseMask, GrabModeAsync, GrabModeAsync, None, None);
-    XUtils::grabButton(display_, Button1, AnyModifier, minimize_button, false,
-                      ButtonPressMask | ButtonReleaseMask, GrabModeAsync, GrabModeAsync, None, None);
-    XUtils::grabButton(display_, Button1, AnyModifier, maximize_button, false,
-                      ButtonPressMask | ButtonReleaseMask, GrabModeAsync, GrabModeAsync, None, None);
-
-    // Save button handles
-    button_windows_[w] = {close_button, minimize_button, maximize_button};*/
 
     if (!wallpaper) {
         XUtils::grabButton(display_, Button1, Mod1Mask, w, false,
@@ -295,32 +276,16 @@ void WindowManager::onConfigureRequest(const XConfigureRequestEvent& e) {
 }
 
 void WindowManager::onButtonPress(const XButtonEvent& e) {
-    if (button_windows_.count(e.window)) {
-        const auto &buttons = button_windows_[e.window];
-        if (e.subwindow == buttons.close) {
-            // Handle close button click
-            XUtils::destroyWindow(display_, e.window);
-        } else if (e.subwindow == buttons.minimize) {
-            // Handle minimize button click
-            XUtils::iconifyWindow(display_, e.window, DefaultScreen(display_));
-        } else if (e.subwindow == buttons.maximize) {
-            // Handle maximize button click
-            XUtils::moveResizeWindow(display_, e.window, 0, 0,
-                                   DisplayWidth(display_, DefaultScreen(display_)),
-                                   DisplayHeight(display_, DefaultScreen(display_)));
-        }
-    } else {
-        assert::check(clients_.count(e.window), "clients_.count(e.window)");
-        const Window frame = clients_[e.window];
+    assert::check(clients_.count(e.window), "clients_.count(e.window)");
+    const Window frame = clients_[e.window];
 
-        drag_start_pos_ = Position<int>(e.x_root, e.y_root);
+    drag_start_pos_ = Position<int>(e.x_root, e.y_root);
 
-        XWindowAttributes attrs = XUtils::getWindowAttributes(display_, frame);
-        drag_start_frame_pos_ = Position<int>(attrs.x, attrs.y);
-        drag_start_frame_size_ = Size<int>(attrs.width, attrs.height);
+    const XWindowAttributes attrs = XUtils::getWindowAttributes(display_, frame);
+    drag_start_frame_pos_ = Position<int>(attrs.x, attrs.y);
+    drag_start_frame_size_ = Size<int>(attrs.width, attrs.height);
 
-        XUtils::raiseWindow(display_, frame);
-    }
+    XUtils::raiseWindow(display_, frame);
 }
 
 void WindowManager::onButtonRelease(const XButtonEvent& e) {
@@ -359,7 +324,7 @@ void WindowManager::onKeyPress(const XKeyEvent& e) {
             (std::find(supported_protocols, supported_protocols + num_supported_protocols,
                       WM_DELETE_WINDOW) != supported_protocols + num_supported_protocols)) {
             println("Gracefully deleting window " << e.window);
-            XUtils::sendClientMessage(display_, e.window, WM_PROTOCOLS, WM_DELETE_WINDOW);
+            XUtils::sendClientMessage(display_, e.window, WM_PROTOCOLS, static_cast<long>(WM_DELETE_WINDOW));
         } else {
             println("Killing window " << e.window);
             XKillClient(display_, e.window);
