@@ -4,7 +4,7 @@
 extern "C" {
 #include <X11/Xlib.h>
 }
-#include <ostream>
+#include <iostream>
 #include <string>
 
 #define printlntostream(str, ln) str << ln << std::endl

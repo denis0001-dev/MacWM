@@ -12,16 +12,12 @@ all: cmake compile run
 
 cmake:
 	cmake -S $(PROJECTDIR)/ -B $(OUTDIR)/
-	# cmake -S $(PROJECTDIR)/src_wallpaper/ -B $(PROJECTDIR)/src_wallpaper/
 
 compile:
 	set -e; \
 	cd $(OUTDIR); \
 	make; \
-	cd $(PROJECTDIR) #; \
-	# cd $(PROJECTDIR)/src_wallpaper; \
-	# make; \
-	# cd $(PROJECTDIR)/
+	cd $(PROJECTDIR)
 
 run:
 	# Check that Xephyr exists

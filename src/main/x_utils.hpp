@@ -3,13 +3,9 @@
 
 extern "C" {
 #include <X11/Xlib.h>
-#include <X11/Xutil.h>
-#include <X11/extensions/shape.h>
 }
 
 #include <string>
-#include <memory>
-#include <iostream>
 #include "util.hpp"
 
 class XUtils {
@@ -75,10 +71,6 @@ public:
     // Save set operations
     static void addToSaveSet(Display* display, Window window);
     static void removeFromSaveSet(Display* display, Window window);
-
-    // Button creation
-    // static Window createButton(Display* display, Window parent, int x, int y,
-    //                          unsigned long color, int size = 14);
 };
 
 #endif // X_UTILS_HPP

@@ -18,12 +18,14 @@ using std::endl;
  *
  * @return EXIT_SUCCESS if the WindowManager is successfully created and run, otherwise, EXIT_FAILURE.
  */
+// ReSharper disable CppDFAConstantFunctionResult
 int main(int argc, char **argv) {
     logging::init();
     log(logging::WARNING, "Testing logging");
 
     if (const unique_ptr<WindowManager> wm = WindowManager::create()) {
         wm->run();
+        // ReSharper disable CppDFAUnreachableCode
         return EXIT_SUCCESS;
     }
     cout << "Failed to initialize window manager." << endl;

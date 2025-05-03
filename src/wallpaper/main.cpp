@@ -3,7 +3,6 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
-#if true
 #define USAGE "Usage" << argv[0] << " <image path>\n"
 #define init SDL_Init(SDL_INIT_VIDEO) == 0
 #define ifnotinit if(!init)
@@ -33,7 +32,6 @@
     while (!done)
 #define sleep(val) std::this_thread::sleep_for(val)
 #define DELAY 5ms
-#endif
 
 using namespace std::chrono_literals;
 int main(const int argc, char* argv[]) {
@@ -48,7 +46,7 @@ int main(const int argc, char* argv[]) {
     }
     // Load the image
     ifnotimg(image, argv[1]) {
-        std::cout << "Error loading image: " << IMG_GetError() << std::endl;
+        std::cout << "Error loading image: " << SDL_GetError() << std::endl;
         return 1;
     }
     // Create a window

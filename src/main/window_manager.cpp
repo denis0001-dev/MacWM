@@ -3,6 +3,10 @@
 #include "assert.hpp"
 #include "logging.hpp"
 #include "x_utils.hpp"
+extern "C" {
+    #include <X11/Xlib.h>
+    #include <X11/Xutil.h>
+}
 
 using namespace std;
 

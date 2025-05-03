@@ -13,11 +13,19 @@ find_package(PkgConfig REQUIRED)
 pkg_check_modules(X11 REQUIRED x11)
 find_package(PNG REQUIRED)
 
-add_executable(macwm src/main.cpp src/util.cpp src/window_manager.cpp src/logging.cpp src/assert.cpp src/x_utils.cpp)
+add_executable(
+    macwm
+
+    src/main/main.cpp
+    src/main/util.cpp
+    src/main/window_manager.cpp
+    src/main/logging.cpp
+    src/main/assert.cpp
+    src/main/x_utils.cpp
+)
 target_compile_options(macwm PRIVATE -Wall -g -std=c++1y)
 target_compile_definitions(macwm PRIVATE)
 target_link_options(macwm PRIVATE -Iext)
-
 target_link_libraries(macwm ${X11_LIBRARIES} ${X11_Xext_LIB})
 
 # Wallpaper
@@ -26,6 +34,6 @@ find_package(SDL2_image REQUIRED)
 
 # Add custom target to compile wallpaper with SDL2 and SDL2_image
 add_custom_target(wallpaper ALL
-  COMMAND ${CMAKE_CXX_COMPILER} -o ./build/wallpaper ./src_wallpaper/main.cpp `sdl2-config --cflags --libs` -lSDL2_image
+  COMMAND ${CMAKE_CXX_COMPILER} -o ./build/wallpaper ./src/wallpaper/main.cpp `sdl2-config --cflags --libs` -lSDL2_image
   WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
 )
