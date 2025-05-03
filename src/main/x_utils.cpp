@@ -202,29 +202,3 @@ void XUtils::addToSaveSet(Display* display, const Window window) {
 void XUtils::removeFromSaveSet(Display* display, const Window window) {
     XRemoveFromSaveSet(display, window);
 }
-
-// Window XUtils::createButton(
-//     Display* display,
-//     const Window parent,
-//     const int x,
-//     const int y,
-//     const unsigned long color,
-//     const int size
-// ) {
-//     const Window button = XCreateSimpleWindow(display, parent, x, y, size, size, 0, 0, color);
-//
-//     // Create a pixmap to define the shape of the button
-//     const Pixmap shape_mask = XCreatePixmap(display, button, size, size, 1);
-//     // ReSharper disable CppLocalVariableMayBeConst
-//     GC shape_gc = XCreateGC(display, shape_mask, 0, nullptr);
-//     XSetForeground(display, shape_gc, 0);
-//     XFillRectangle(display, shape_mask, shape_gc, 0, 0, size, size);
-//     XSetForeground(display, shape_gc, 1);
-//     XFillArc(display, shape_mask, shape_gc, 0, 0, size, size, 0, 360 * 64);
-//     XShapeCombineMask(display, button, ShapeBounding, 0, 0, shape_mask, ShapeSet);
-//     XFreePixmap(display, shape_mask);
-//     XFreeGC(display, shape_gc);
-//
-//     XMapWindow(display, button);
-//     return button;
-// }
