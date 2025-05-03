@@ -16,17 +16,16 @@ find_package(PNG REQUIRED)
 add_executable(
     macwm
 
-    src/main.cpp
-    src/util.cpp
-    src/window_manager.cpp
-    src/logging.cpp
+    src/main/main.cpp
+    src/main/util.cpp
+    src/main/window_manager.cpp
+    src/main/logging.cpp
     src/main/assert.cpp
     src/main/x_utils.cpp
 )
 target_compile_options(macwm PRIVATE -Wall -g -std=c++1y)
 target_compile_definitions(macwm PRIVATE)
 target_link_options(macwm PRIVATE -Iext)
-
 target_link_libraries(macwm ${X11_LIBRARIES} ${X11_Xext_LIB})
 
 # Wallpaper

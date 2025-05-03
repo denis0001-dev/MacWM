@@ -12,7 +12,6 @@ all: cmake compile run
 
 cmake:
 	cmake -S $(PROJECTDIR)/ -B $(OUTDIR)/
-	# cmake -S $(PROJECTDIR)/src_wallpaper/ -B $(PROJECTDIR)/src_wallpaper/
 
 compile:
 	set -e; \
