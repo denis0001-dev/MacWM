@@ -6,10 +6,10 @@ fi
 
 # 1. Start some programs to play with.
 if $DEBUGGING; then
-  gdbserver :1235 ./build/wallpaper ./src_wallpaper/wallpaper.jpg &
+  gdbserver :1235 ./build/wallpaper ./src/wallpaper/wallpaper.jpg &
   WALLPAPERPID=$!
 else
-  ./build/wallpaper ./src_wallpaper/wallpaper.jpg &
+  ./build/wallpaper ./src/wallpaper/wallpaper.jpg &
   WALLPAPERPID=$!
 fi
 sleep 2 && xterm &

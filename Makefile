@@ -17,10 +17,7 @@ compile:
 	set -e; \
 	cd $(OUTDIR); \
 	make; \
-	cd $(PROJECTDIR) #; \
-	# cd $(PROJECTDIR)/src_wallpaper; \
-	# make; \
-	# cd $(PROJECTDIR)/
+	cd $(PROJECTDIR)
 
 run:
 	# Check that Xephyr exists
