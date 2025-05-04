@@ -1,90 +1,143 @@
-# Build directories
-build/
-out/
+# Build and output directories
 bin/
+build/
+cmake-build-*/
+coverage/
+deps/
+docs/_build/
+logs/
 obj/
+out/
+packages/
+vendor/
+
+# Compiled files
+*.app
+*.exe
 *.o
 *.obj
-*.exe
 *.out
-*.app
 
 # CMake
-CMakeFiles/
-CMakeCache.txt
-cmake_install.cmake
-Makefile
 *.cmake
 *.ninja
+.cache
 .ninja_deps
 .ninja_log
-.cache
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
 
-# IDE - CLion
+# Gradle
+.gradle
+.gradletasknamecache
+gradle-app.setting
+**/build/
+!src/**/build/
+!gradle-wrapper.jar
+!gradle-wrapper.properties
+
+# IDE - CLion, IntelliJ, etc.
 .idea/
 *.iml
-*.iws
 *.ipr
-cmake-build-*/
+*.iws
 
 # IDE - Visual Studio Code
 .vscode/
 *.code-workspace
 
 # IDE - Visual Studio
-.vs/
+*.aps
+*.cachefile
+*.ncb
+*.opendb
+*.opensdf
+*.sdf
 *.sln
+*.suo
+*.VC.db
+*.VC.VC.opendb
 *.vcxproj
 *.vcxproj.filters
 *.vcxproj.user
-*.suo
-*.opensdf
-*.sdf
+.vs/
 ipch/
-*.aps
-*.ncb
-*.opendb
-*.cachefile
-*.VC.db
-*.VC.VC.opendb
+
+# Eclipse
+.classpath
+.project
 
 # System files
 .DS_Store
 Thumbs.db
-*.swp
-*~
 *.bak
+*.swp
 *.tmp
 *.temp
-
-# Dependencies
-deps/
-vendor/
-packages/
+*~
 
 # Logs
 *.log
-logs/
 
 # Generated files
-*.gen.h
 *.gen.cpp
+*.gen.h
 *.generated.*
 
 # Coverage
-coverage/
 *.gcda
 *.gcno
 *.gcov
 
 # Documentation
-docs/_build/
 *.aux
-*.toc
-*.fls
 *.fdb_latexmk
+*.fls
+*.toc
 
-build
+# JetBrains specific
+.idea/**/aws.xml
+.idea/**/contentModel.xml
+.idea/**/dataSources/
+.idea/**/dataSources.ids
+.idea/**/dataSources.local.xml
+.idea/**/dbnavigator.xml
+.idea/**/dictionaries
+.idea/**/dynamic.xml
+.idea/**/gradle.xml
+.idea/**/libraries
+.idea/**/mongoSettings.xml
+.idea/**/replstate.xml
+.idea/**/shelf
+.idea/**/sqlDataSources.xml
+.idea/**/tasks.xml
+.idea/**/uiDesigner.xml
+.idea/**/usage.statistics.xml
+.idea/**/workspace.xml
+.idea/artifacts
+.idea/compiler.xml
+.idea/jarRepositories.xml
+.idea/modules.xml
+.idea/*.iml
+.idea/modules
+.idea/sonarlint/
+.idea/sonarlint.xml
+.idea_modules/
 
+# JIRA plugin
+atlassian-ide-plugin.xml
+
+# Crashlytics plugin (for Android Studio and IntelliJ)
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+fabric.properties
+
+# Android studio 3.1+ serialized cache file
+.idea/caches/build_file_checksums.ser
+
+# Project specific
 !build/wallpaper
 !build/MacWM.deb
