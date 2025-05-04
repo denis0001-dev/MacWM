@@ -1,6 +1,0 @@
-headers = wayland-egl.h
-headerFilter = wayland-egl.h
-package = wayland.egl
-
-compilerOpts = -I/usr/include
-linkerOpts = -lwayland-egl

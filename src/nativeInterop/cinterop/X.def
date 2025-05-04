@@ -1,0 +1,6 @@
+headers = X11/X.h
+headerFilter = X11/X.h
+package = xorg.constants
+
+compilerOpts = -I/usr/include
+linkerOpts = -lX11 -Iext

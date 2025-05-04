@@ -1,0 +1,9 @@
+headers = X11/Xlib.h
+headerFilter = X11/Xlib.h
+package = xorg.lib
+
+compilerOpts = -I/usr/include
+linkerOpts = -lX11 -Iext
+
+---
+typedef Display XDisplay;

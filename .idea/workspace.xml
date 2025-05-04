@@ -5,7 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="99fc49f6-d39d-4ea6-b623-0f46b9fb5d26" name="Changes" comment="Gitignore file">
+      <change afterPath="$PROJECT_DIR$/src/linuxX64Main/kotlin/ru/denis0001dev/util/FileUtil.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/linuxX64Main/kotlin/ru/denis0001dev/util/Utils.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/nativeInterop/cinterop/X.def" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/nativeInterop/cinterop/Xlib.def" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/nativeInterop/cinterop/Xutil.def" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/nativeInterop/cinterop/wayland-client-core.def" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/nativeInterop/cinterop/wayland-client-protocol.def" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/nativeInterop/cinterop/wayland-client.def" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/nativeInterop/cinterop/wayland-cursor.def" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/nativeInterop/cinterop/wayland-egl-core.def" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/nativeInterop/cinterop/wayland-egl.def" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/nativeInterop/cinterop/wayland-util.def" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/nativeInterop/cinterop/wayland-version.def" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +52,12 @@
                 <item name="macwm2" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
               </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="macwm2" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="interop" type="c8890929:TasksNode$1" />
+              </path>
             </expand>
             <select />
           </tree_state>
@@ -45,26 +65,63 @@
       </state>
     </system>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin Object" />
+        <option value="Kotlin File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "denis0001-dev"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/denis0001-dev/MacWM.git",
+    "accountId": "5ccfaaf5-95f5-4725-8f11-c3b35d8310d6"
+  }
+}]]></component>
   <component name="KotlinCodeInsightWorkspaceSettings">
     <option name="optimizeImportsOnTheFly" value="true" />
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 4
+}]]></component>
   <component name="ProjectId" id="2wY3R0aQzvveXrXBTFIxEYVDrZ1" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;git-widget-placeholder&quot;: &quot;kotlin&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.macwm2 [cinteropXlibLinuxX64].executor": "Run",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "kotlin",
+    "last_opened_file_path": "/home/denis0001-dev/macwm2/src/nativeInterop/cinterop",
+    "settings.editor.selected.configurable": "preferences.fileTypes"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/nativeInterop/cinterop" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/linuxX64Main/kotlin/ru/denis0001dev/macwm" />
+      <recent name="$PROJECT_DIR$/temp" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -140,7 +197,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="c++" />
+                        <option value="kotlin" />
                       </list>
                     </value>
                   </entry>

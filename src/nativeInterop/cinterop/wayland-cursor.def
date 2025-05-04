@@ -1,6 +1,0 @@
-headers = wayland-cursor.h
-headerFilter = wayland-cursor.h
-package = wayland.cursor
-
-compilerOpts = -I/usr/include
-linkerOpts = -lwayland-cursor

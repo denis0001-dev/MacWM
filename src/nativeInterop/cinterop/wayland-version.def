@@ -1,6 +1,0 @@
-headers = wayland-version.h
-headerFilter = wayland-version.h
-package = wayland.version
-
-compilerOpts = -I/usr/include
-linkerOpts = -lwayland-version

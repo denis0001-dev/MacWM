@@ -1,0 +1,6 @@
+headers = X11/Xutil.h
+headerFilter = X11/Xutil.h
+package = xorg.util
+
+compilerOpts = -I/usr/include
+linkerOpts = -lX11 -Iext

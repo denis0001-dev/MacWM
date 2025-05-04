@@ -1,6 +1,0 @@
-headers = wayland-client.h
-headerFilter = wayland-client.h
-package = wayland.client
-
-compilerOpts = -I/usr/include
-linkerOpts = -lwayland-client

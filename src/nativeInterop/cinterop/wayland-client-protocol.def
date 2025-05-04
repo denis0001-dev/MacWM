@@ -1,6 +1,0 @@
-headers = wayland-client-protocol.h
-headerFilter = wayland-client-protocol.h
-package = wayland.client.protocol
-
-compilerOpts = -I/usr/include
-linkerOpts = -lwayland-client-protocol
