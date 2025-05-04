@@ -20,14 +20,12 @@ vendor/
 
 # CMake
 *.cmake
-*.ninja
 .cache
 .ninja_deps
 .ninja_log
 CMakeCache.txt
 CMakeFiles/
 cmake_install.cmake
-Makefile
 
 # Gradle
 .gradle
@@ -140,4 +138,5 @@ fabric.properties
 
 # Project specific
 !build/wallpaper
-!build/MacWM.deb
+!build/*.deb
+!build/macwm
