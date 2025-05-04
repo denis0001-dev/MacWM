@@ -57,11 +57,11 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "git-widget-placeholder": "kotlin"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;git-widget-placeholder&quot;: &quot;kotlin&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/nativeInterop/cinterop" />
