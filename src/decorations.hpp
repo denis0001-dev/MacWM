@@ -4,14 +4,14 @@
 
 class Decoration {
 public:
-    Decoration(Display* dpy, Window client, const std::string& title);
+    Decoration(Display* dpy, Window client, std::string title);
     ~Decoration();
 
     Window frame() const { return frame_win; }
     Window client() const { return client_win; }
-    void draw();
+    void draw() const;
     void on_button_press(const XButtonEvent& ev);
-    void on_motion_notify(const XMotionEvent& ev);
+    void on_motion_notify(const XMotionEvent& ev) const;
 
 private:
     Display* dpy;

@@ -19,7 +19,7 @@ WindowManager::~WindowManager() {
     XCloseDisplay(dpy);
 }
 
-void WindowManager::run() {
+[[noreturn]] void WindowManager::run() {
     while (true) {
         XEvent ev;
         XNextEvent(dpy, &ev);
@@ -30,7 +30,6 @@ void WindowManager::run() {
             case MotionNotify: handle_motion_notify(ev); break;
             case KeyPress: handle_key_press(ev); break;
             case Expose: handle_expose(ev); break;
-            // ... more event types
         }
     }
 }
@@ -42,7 +41,7 @@ void WindowManager::handle_map_request(XEvent& ev) {
     decorations.push_back(std::move(deco));
 }
 
-void WindowManager::handle_destroy_notify(XEvent& ev) {
+void WindowManager::handle_destroy_notify(const XEvent& ev) {
     // Remove decoration for destroyed window
     decorations.erase(std::remove_if(decorations.begin(), decorations.end(),
         [&](const std::unique_ptr<Decoration>& deco) {
@@ -50,7 +49,7 @@ void WindowManager::handle_destroy_notify(XEvent& ev) {
         }), decorations.end());
 }
 
-void WindowManager::handle_button_press(XEvent& ev) {
+void WindowManager::handle_button_press(const XEvent& ev) const {
     // Pass to decorations for move/resize or to menu
     for (auto& deco : decorations) {
         if (deco->frame() == ev.xbutton.window) {
@@ -61,17 +60,17 @@ void WindowManager::handle_button_press(XEvent& ev) {
     menu->on_button_press(ev.xbutton);
 }
 
-void WindowManager::handle_motion_notify(XEvent& ev) {
+void WindowManager::handle_motion_notify(const XEvent& ev) const {
     for (auto& deco : decorations) {
         deco->on_motion_notify(ev.xmotion);
     }
 }
 
-void WindowManager::handle_key_press(XEvent& ev) {
+void WindowManager::handle_key_press(const XEvent& ev) const {
     hotkey_manager->on_key_press(ev.xkey);
 }
 
-void WindowManager::handle_expose(XEvent& ev) {
+void WindowManager::handle_expose(const XEvent& ev) const {
     for (auto& deco : decorations) {
         if (deco->frame() == ev.xexpose.window) {
             deco->draw();

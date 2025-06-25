@@ -1,8 +1,10 @@
 #include "decorations.hpp"
 #include <X11/Xutil.h>
 
-Decoration::Decoration(Display* dpy, Window client, const std::string& title)
-    : dpy(dpy), client_win(client), title(title)
+#include <utility>
+
+Decoration::Decoration(Display* dpy, Window client, std::string  title)
+    : dpy(dpy), client_win(client), title(std::move(title))
 {
     XWindowAttributes attr;
     XGetWindowAttributes(dpy, client, &attr);
@@ -30,13 +32,14 @@ Decoration::~Decoration() {
     XDestroyWindow(dpy, frame_win);
 }
 
-void Decoration::draw() {
+void Decoration::draw() const {
     // Draw titlebar (simple filled rectangle + text)
+    // ReSharper disable CppLocalVariableMayBeConst
     GC gc = XCreateGC(dpy, frame_win, 0, nullptr);
     XSetForeground(dpy, gc, BlackPixel(dpy, 0));
     XFillRectangle(dpy, frame_win, gc, 0, 0, 400, titlebar_height); // width is placeholder
     XSetForeground(dpy, gc, WhitePixel(dpy, 0));
-    XDrawString(dpy, frame_win, gc, 4, 16, title.c_str(), title.length());
+    XDrawString(dpy, frame_win, gc, 4, 16, title.c_str(), title.length()); // NOLINT(*-narrowing-conversions)
     XFreeGC(dpy, gc);
 }
 
@@ -53,10 +56,10 @@ void Decoration::on_button_press(const XButtonEvent& ev) {
     }
 }
 
-void Decoration::on_motion_notify(const XMotionEvent& ev) {
+void Decoration::on_motion_notify(const XMotionEvent& ev) const {
     if (dragging) {
-        int dx = ev.x_root - drag_start_x;
-        int dy = ev.y_root - drag_start_y;
+        const int dx = ev.x_root - drag_start_x;
+        const int dy = ev.y_root - drag_start_y;
         XMoveWindow(dpy, frame_win, win_start_x + dx, win_start_y + dy);
     }
 } 

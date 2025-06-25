@@ -44,5 +44,5 @@ if [[ "$RUN" == "true" ]]; then
    --rm \
    -e DISPLAY=docker.for.mac.host.internal:0 \
    -v .:/app \
-   $IMAGE
+   $IMAGE:$PUSH_VERSION
 fi
