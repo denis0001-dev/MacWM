@@ -14,7 +14,6 @@ cmake:
 	cmake -S $(PROJECTDIR)/ -B $(OUTDIR)/
 
 compile:
-	set -e; \
 	cd $(OUTDIR); \
 	make; \
 	cd $(PROJECTDIR)
@@ -32,3 +31,6 @@ run:
             -ac \
             -screen 1280x800 \
             -host-cursor
+
+clean:
+	rm -rf $(OUTDIR)

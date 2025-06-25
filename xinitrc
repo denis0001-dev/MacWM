@@ -1,6 +1,6 @@
 # xinitrc file for testing our window manager.
 
-if [ -z $DEBUGGING ]; then
+if [ -z "$DEBUGGING" ]; then
   export DEBUGGING=false
 fi
 
