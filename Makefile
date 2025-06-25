@@ -1,36 +1,43 @@
-PROJECTDIR = $(shell realpath .)
-INDIR = $(PROJECTDIR)/src
-OUTDIR = $(PROJECTDIR)/build
-
+CXX = g++
+CXXFLAGS = -Wall -g -std=c++1y $(shell pkg-config --cflags x11) -I/opt/X11/include
+LDFLAGS = $(shell pkg-config --libs x11)
+SRC_DIR = src
+OBJ_DIR = build/obj
+BIN_DIR = build/bin
+SRC = $(wildcard $(SRC_DIR)/*.cpp)
+OBJ = $(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(SRC))
+BIN = $(BIN_DIR)/flwm
 XEPHYR = $(shell whereis -b Xephyr | sed -E 's/^.*: ?//')
 
-ifndef XEPHYR
-	$(error "Xephyr not found!")
-endif
+all: $(BIN)
 
-all: cmake compile run
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
 
-cmake:
-	cmake -S $(PROJECTDIR)/ -B $(OUTDIR)/
+$(BIN_DIR):
+	mkdir -p $(BIN_DIR)
 
-compile:
-	cd $(OUTDIR); \
-	make; \
-	cd $(PROJECTDIR)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-run:
+$(BIN): $(OBJ) | $(BIN_DIR)
+	$(CXX) $(CXXFLAGS) $^ -o $@ $(LDFLAGS)
+
+compile: $(BIN)
+
+run: compile
 	# Check that Xephyr exists
 	if [ -z "$(XEPHYR)" ]; then \
 		echo "Xephyr not found!"; \
 		exit 0; \
-  	fi; \
-  	export DEBUGGING=${DEBUG}; \
-  	xinit $(PROJECTDIR)/xinitrc -- \
-        "$(XEPHYR)" \
-            :100 \
-            -ac \
-            -screen 1280x800 \
-            -host-cursor
+	fi; \
+	export DEBUGGING=${DEBUG}; \
+	xinit ./xinitrc -- \
+		"$(XEPHYR)" \
+			:100 \
+			-ac \
+			-screen 1280x800 \
+			-host-cursor
 
 clean:
-	rm -rf $(OUTDIR)
+	rm -rf build
