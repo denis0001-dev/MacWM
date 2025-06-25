@@ -1,8 +1,11 @@
+# MacWM
+
+---
+
+# flwm
 flwm Version 0.25
 
-----------------------------------------------------------------
-How to compile flwm:
-----------------------------------------------------------------
+## How to compile flwm
 
 You need fltk.  If you do not have it yet, download it from
 http://www.fltk.org, and compile and install it.
@@ -18,9 +21,7 @@ Become superuser and type "make install"
 
 If you wish to edit the code, type "make depend"
 
-----------------------------------------------------------------
-How to run flwm:
-----------------------------------------------------------------
+## How to run flwm
 
 To run flwm as your login script, you need to create or replace
 ~/.xinitrc or ~/.xsession (or both).  Newer Linux systems with a login
@@ -30,6 +31,7 @@ session" popup in your login window.
 
 The .xinitrc or .xsession file should look like this:
 
+```bash
 #!/bin/sh
 xsetroot -solid \#006060
 xrdb .Xresources
@@ -38,16 +40,19 @@ flwm &
 WindowManager=$!
 # xterm, other automatically-launched programs
 wait $WindowManager
+```
 
 ALLOWING THE WINDOW MANAGER TO EXIT W/O LOGOUT:
 
-That is the most user-friendly but it logs you out when flwm exits,
+That is the most user-friendly, but it logs you out when flwm exits,
 which means it logs out if flwm crashes (:-)) and you cannot switch
 window managers.  Another possibility is to run another program last
 so flwm can exit, by putting lines like this at the end:
 
+```bash
 /usr/local/bin/flwm -x &
 exec rxvt -geometry 80x11+8-8 -C -T "Ctrl-D_to_logout"
+```
 
 The -x tells flwm to put "exit" on the menu rather than "logout".
 
@@ -67,39 +72,37 @@ still have a logout command, but you are not logged out if it
 crashes.  This is done by running the programs "reaper" and
 "endsession", as in this sample .xsession file:
 
+```bash
 #! /bin/sh
 xsetroot -solid \#004040
 xrdb .Xresources
 reaper
 flwm -x &
 xwsh -console -t console -iconic &
+```
 
 Also create the file "~/.wmx/Logout" with these contents:
 
+```bash
 #! /bin/sh
 endsession
+```
 
 The result will be that flwm has a menu itme "Logout" that logs you
 out.
 
-----------------------------------------------------------------
-Usage:
-----------------------------------------------------------------
+## Usage
 
 Type "man flwm" for the manual page.
 
-----------------------------------------------------------------
-Acknoledgements
-----------------------------------------------------------------
+## Acknoledgements
 
 This program was inspired by and much code copied from the "wm2"
 window manager by Chris Cannam <cannam@zands.demon.co.uk>
 
 Code contributions by Steve );Hara-Smith <steveo@iol.ie>
 
-----------------------------------------------------------------
-Copyright (C) 1998-1999 Bill Spitzak
-----------------------------------------------------------------
+## License
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation; either version 2 of the License, or (at
@@ -115,7 +118,6 @@ along with this library; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
 USA.
 
-Written by Bill Spitzak		spitzak@d2.com
-----------------------------------------------------------------
-END
-----------------------------------------------------------------
+---
+
+_Written by Bill Spitzak		spitzak@d2.com_
