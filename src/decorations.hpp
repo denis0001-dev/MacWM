@@ -11,6 +11,7 @@ public:
     Window client() const { return client_win; }
     void draw() const;
     void on_button_press(const XButtonEvent& ev);
+    void on_button_release(const XButtonEvent& ev);
     void on_motion_notify(const XMotionEvent& ev) const;
 
 private:
@@ -21,6 +22,7 @@ private:
     int drag_start_x = 0, drag_start_y = 0;
     int win_start_x = 0, win_start_y = 0;
     bool dragging = false;
+    int pressed_button = 0; // 1=close, 2=min, 3=max
     static constexpr int border_width = 2;
     static constexpr int titlebar_height = 24;
 }; 

@@ -27,6 +27,7 @@ WindowManager::~WindowManager() {
             case MapRequest: handle_map_request(ev); break;
             case DestroyNotify: handle_destroy_notify(ev); break;
             case ButtonPress: handle_button_press(ev); break;
+            case ButtonRelease: handle_button_release(ev); break;
             case MotionNotify: handle_motion_notify(ev); break;
             case KeyPress: handle_key_press(ev); break;
             case Expose: handle_expose(ev); break;
@@ -58,6 +59,15 @@ void WindowManager::handle_button_press(const XEvent& ev) const {
         }
     }
     menu->on_button_press(ev.xbutton);
+}
+
+void WindowManager::handle_button_release(const XEvent& ev) const {
+    for (auto& deco : decorations) {
+        if (deco->frame() == ev.xbutton.window) {
+            deco->on_button_release(ev.xbutton);
+            return;
+        }
+    }
 }
 
 void WindowManager::handle_motion_notify(const XEvent& ev) const {

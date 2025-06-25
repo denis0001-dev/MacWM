@@ -24,6 +24,7 @@ private:
     void handle_map_request(XEvent& ev);
     void handle_destroy_notify(const XEvent& ev);
     void handle_button_press(const XEvent& ev) const;
+    void handle_button_release(const XEvent& ev) const;
     void handle_motion_notify(const XEvent& ev) const;
     void handle_key_press(const XEvent& ev) const;
     void handle_expose(const XEvent& ev) const;
