@@ -13,6 +13,24 @@ WindowManager::WindowManager() {
     menu = std::make_unique<Menu>(dpy, root);
     desktop_manager = std::make_unique<DesktopManager>(dpy, root);
     hotkey_manager = std::make_unique<HotkeyManager>(dpy, root);
+
+    // Manage all existing top-level windows
+    Window root_return, parent_return;
+    Window* children;
+    unsigned int nchildren;
+    if (XQueryTree(dpy, root, &root_return, &parent_return, &children, &nchildren)) {
+        for (unsigned int i = 0; i < nchildren; ++i) {
+            XWindowAttributes attr;
+            XGetWindowAttributes(dpy, children[i], &attr);
+            if (!attr.override_redirect && attr.map_state == IsViewable) {
+                std::cerr << "[WM] Managing pre-existing window: " << children[i] << std::endl;
+                auto deco = std::make_unique<Decoration>(dpy, children[i], "Window");
+                deco->draw();
+                decorations.push_back(std::move(deco));
+            }
+        }
+        if (children) XFree(children);
+    }
 }
 
 WindowManager::~WindowManager() {
@@ -36,10 +54,27 @@ WindowManager::~WindowManager() {
 }
 
 void WindowManager::handle_map_request(XEvent& ev) {
-    // Create decoration for new window
-    auto deco = std::make_unique<Decoration>(dpy, ev.xmaprequest.window, "Window");
+    Window client = ev.xmaprequest.window;
+    XWindowAttributes attr;
+    XGetWindowAttributes(dpy, client, &attr);
+    std::cerr << "[WM] MapRequest for client=" << client << ", override_redirect=" << attr.override_redirect << std::endl;
+    if (attr.override_redirect) {
+        std::cerr << "[WM] Skipping override_redirect window: " << client << std::endl;
+        return;
+    }
+    // Check if already managed
+    for (const auto& deco : decorations) {
+        if (deco->client() == client) {
+            std::cerr << "[WM] Already managing client=" << client << std::endl;
+            return;
+        }
+    }
+    // Create decoration (this will reparent and map)
+    auto deco = std::make_unique<Decoration>(dpy, client, "Window");
     deco->draw();
     decorations.push_back(std::move(deco));
+    std::cerr << "[WM] Decoration created and drawn for client=" << client << std::endl;
+    // Do NOT map the client directly here; Decoration handles it
 }
 
 void WindowManager::handle_destroy_notify(const XEvent& ev) {

@@ -1,6 +1,6 @@
 CXX = g++
 CXXFLAGS = -Wall -g -std=c++1y $(shell pkg-config --cflags x11) -I/opt/X11/include
-LDFLAGS = $(shell pkg-config --libs x11)
+LDFLAGS = $(shell pkg-config --libs x11) -lXext
 SRC_DIR = src
 OBJ_DIR = build/obj
 BIN_DIR = build/bin
@@ -30,14 +30,13 @@ run: compile
 	if [ -z "$(XEPHYR)" ]; then \
 		echo "Xephyr not found!"; \
 		exit 0; \
-	fi; \
-	export DEBUGGING=${DEBUG}; \
+  	fi; \
 	xinit ./xinitrc -- \
-		"$(XEPHYR)" \
-			:100 \
-			-ac \
-			-screen 1280x800 \
-			-host-cursor
+        "$(XEPHYR)" \
+            :100 \
+            -ac \
+            -screen 1280x800 \
+            -host-cursor
 
 clean:
 	rm -rf build

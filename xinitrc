@@ -1,13 +1,12 @@
 #!/bin/bash
-# xinitrc file for testing our window manager.
 
 set -e
 
 # 1. Constants
 WM=./build/bin/flwm
 
-if [ -z "$DEBUGGING" ]; then
-  export DEBUGGING=false
+if [ -z "$DEBUG" ]; then
+  DEBUG=false
 fi
 
 cleanup() {
@@ -26,7 +25,7 @@ XEYESPID=$!
 trap cleanup EXIT
 
 # 3. Start our window manager
-if $DEBUGGING; then
+if $DEBUG; then
   echo "Running in debug mode."
   gdbserver :1234 $WM
   WMPID=$!

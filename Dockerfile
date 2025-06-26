@@ -21,7 +21,7 @@ RUN --mount=type=cache,target=/var/cache/apt \
 
 # 2. Args and env variables
 ARG DEBUG=true
-ENV DEBUGGING=$DEBUG
+ENV DEBUG=$DEBUG
 
 # 3. Final command
 WORKDIR /app
